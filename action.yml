@@ -1,0 +1,9 @@
+name: Setup Wasmer
+description: Sets up Wasmer
+author: Cloud-CNC
+branding:
+  color: purple
+  icon: layers
+runs:
+  using: node12
+  main: dist/index.js
