@@ -52,8 +52,6 @@ const main = async () =>
 
   //Execute the installer
   startGroup('Execute the installer.');
-  await exec('stat', ['-c', '"%s"', tmp]);
-  await exec('cat', [tmp]);
   const exitCode = await exec(isWindows ? 'pwsh' : 'sh', [
     tmp
   ]);
