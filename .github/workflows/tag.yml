@@ -1,19 +1,23 @@
+
 # Generate major and minor git tags
 
 name: Tags
 
 on:
-  # Run when released
-  release:
-    types: [published, edited]
+  # Run when fully-qualified semantic versions (X.Y.Z) are pushed
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   tags:
     name: Tags
     runs-on: ubuntu-latest
     steps:
+      # Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
       # Generate additional tags
       - name: Generate additional tags
-        uses: Actions-R-Us/actions-tagger@v2
-        with:
-          publish_latest_tag: true
+        uses: vweevers/additional-tags-action@v1

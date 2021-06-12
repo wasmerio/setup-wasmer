@@ -21,9 +21,13 @@ jobs:
           - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
+      # Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
       # Setup Wasmer
       - name: Setup Wasmer
-        uses: cloud-cnc/setup-wasmer@latest
+        uses: .
 
       # Verify Wasmer is installed
       - name: Verify Wasmer is installed
