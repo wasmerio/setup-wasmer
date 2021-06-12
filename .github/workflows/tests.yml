@@ -27,7 +27,7 @@ jobs:
 
       # Setup Wasmer
       - name: Setup Wasmer
-        uses: .
+        uses: ./
 
       # Verify Wasmer is installed
       - name: Verify Wasmer is installed
