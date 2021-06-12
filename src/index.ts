@@ -65,11 +65,15 @@ const main = async () =>
   info(`Executed installer. (Exit code ${exitCode})`);
 
   //Update environment variables
-  if (!isWindows)
+  const wasmerDir = join(homedir(), '.wasmer');
+  debug(`Using ${wasmerDir} as Wasmer directory.`);
+  if (isWindows)
   {
-    const wasmerDir = join(homedir(), '.wasmer');
-    debug(`Using ${wasmerDir} as Wasmer directory.`);
-
+    exportVariable('WASMER_DIR', wasmerDir);
+    addPath(join(wasmerDir, 'bin'));
+  }
+  else
+  {
     exportVariable('WASMER_DIR', wasmerDir);
     exportVariable('WASMER_CACHE_DIR', join(wasmerDir, 'cache'));
     addPath(join(wasmerDir, 'bin'));

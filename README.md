@@ -4,9 +4,10 @@
 [GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io)
 
 ## Features
-* Always uses the latest Wasmer build
+* Always uses the latest stable Wasmer build
 * Cross platform (Linux, Mac, and Windows)
 * Automatically updates environment variables (So you can immediately start using Wasmer)
+* Fully tested
 
 ## Caveats
 * Doesn't install Wasienv (Use the [Docker image instead](https://hub.docker.com/r/wasienv/wasienv))
