@@ -12,10 +12,6 @@ jobs:
     name: Tags
     runs-on: ubuntu-latest
     steps:
-      # Checkout source code
-      - name: Checkout source code
-        uses: actions/checkout@v2
-
       # Generate additional tags
       - name: Generate additional tags
         uses: Actions-R-Us/actions-tagger@v2
