@@ -19,4 +19,6 @@ jobs:
 
       # Generate additional tags
       - name: Generate additional tags
-        uses: vweevers/additional-tags-action@v1
+        uses: Actions-R-Us/actions-tagger@v2
+        with:
+          publish_latest_tag: true

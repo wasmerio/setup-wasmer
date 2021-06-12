@@ -1,9 +1,9 @@
 name: Setup Wasmer
-description: Sets up Wasmer
+description: 'Set up Wasmer: the cross-platform WASM runtime'
 author: Cloud-CNC
 branding:
   color: purple
-  icon: layers
+  icon: package
 runs:
   using: node12
   main: dist/index.js

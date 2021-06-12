@@ -1,0 +1,44 @@
+# Test the action
+
+name: Tests
+
+on:
+  # Run tests when pushed
+  push:
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Setup Wasmer
+      - name: Setup Wasmer
+        uses: cloud-cnc/setup-wasmer@latest
+
+      # Verify Wasmer is installed
+      - name: Verify Wasmer is installed
+        if: matrix.os == 'macos-latest' || matrix.os == 'ubuntu-latest'
+        run: |
+          command -v wasmer
+          command -v wapm
+          command -v wax
+
+      - name: Verify Wasmer is installed
+        if: matrix.os == 'windows-latest'
+        run: |
+          Get-Command wasmer
+          Get-Command wapm
+          Get-Command wax
+
+      # Verify Wasmer runs
+      - name: Verify Wasmer runs
+        uses: MeilCli/test-command-action@v3.0.0
+        with:
+          command: wax echo Hello, world!
+          expect_contain: Hello, world!
