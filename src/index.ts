@@ -58,7 +58,11 @@ const main = async () =>
 
   if (exitCode != 0)
   {
+    //Fail the step
     setFailed(`Installer failed! (Exit code ${exitCode})`);
+
+    //Crash
+    process.exit(1);
   }
   endGroup();
 
