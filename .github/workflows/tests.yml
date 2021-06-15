@@ -5,8 +5,6 @@ name: Tests
 on:
   # Run tests when pushed
   push:
-    tags-ignore:
-      - '*'
 
 env:
   # The string echoed back by Wasmer
