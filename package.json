@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cloud-CNC/setup-wasmer.git"
+    "url": "git+https://github.com/wasmerio/setup-wasmer.git"
   },
-  "author": "Cloud-CNC",
+  "author": "Cloud-CNC, Wasmer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Cloud-CNC/setup-wasmer/issues"
+    "url": "https://github.com/wasmerio/setup-wasmer/issues"
   },
-  "homepage": "https://github.com/Cloud-CNC/setup-wasmer#readme",
+  "homepage": "https://github.com/wasmerio/setup-wasmer#readme",
   "dependencies": {
     "@actions/core": "^1.4.0",
     "@actions/exec": "^1.1.0",

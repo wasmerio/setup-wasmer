@@ -1,7 +1,7 @@
 # Setup Wasmer Action
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Cloud-CNC/setup-wasmer/Tests?label=Tests&style=flat-square)](https://github.com/Cloud-CNC/setup-wasmer/actions/workflows/tests.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wasmerio/setup-wasmer/Tests?label=Tests&style=flat-square)](https://github.com/wasmerio/setup-wasmer/actions/workflows/tests.yml)
 
-[GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io). Works well with [cloud-cnc/wapm-publish](https://github.com/cloud-cnc/wapm-publish).
+[GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io). Works well with [wasmerio/wapm-publish](https://github.com/wasmerio/wapm-publish).
 
 ## Features
 * Always uses the latest stable Wasmer build
@@ -15,10 +15,10 @@
 ## Usage
 ```yaml
 - name: Setup Wasmer
-  uses: cloud-cnc/setup-wasmer@v1
+  uses: wasmerio/setup-wasmer@v1
 
 - name: Publish to WAPM
-  uses: cloud-cnc/wapm-publish@v1
+  uses: wasmerio/wapm-publish@v1
   with:
     username: ${{ secrets.WAPM_USERNAME }}
     password: ${{ secrets.WAPM_PASSWORD }}

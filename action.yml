@@ -1,6 +1,6 @@
 name: Setup Wasmer
 description: 'Set up Wasmer: the cross-platform WASM runtime'
-author: Cloud-CNC
+author: Wasmer
 branding:
   color: purple
   icon: package
