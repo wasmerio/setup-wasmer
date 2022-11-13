@@ -75,7 +75,7 @@ jobs:
       - name: Verify Wasmer runs
         uses: MeilCli/test-command-action@v3.0.0
         with:
-          command: wapm --version
+          command: wasmer --version
           expect_contain: "wasmer 3.0.0-rc.2"
 
       # Verify Wasmer runs
