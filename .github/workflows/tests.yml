@@ -61,7 +61,7 @@ jobs:
       - name: Setup Wasmer
         uses: ./
         with:
-          version: "3.0.0-rc.2"
+          version: "v3.0.0-rc.2"
 
       # Verify Wasmer is installed
       - name: Verify Wasmer is installed

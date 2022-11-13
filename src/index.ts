@@ -51,10 +51,12 @@ const main = async () =>
 
   info('Downloaded installer.');
   const exec_input = version.length() == 0 ? [tmp] : [tmp, version];
+  const exec_shell = isWindows ? 'pwsh' : 'sh';
+  info(`${exec_shell} ${exec_input} -- install for version ${version}`);
 
   //Execute the installer
   startGroup('Execute the installer.');
-  const exitCode = await exec(isWindows ? 'pwsh' : 'sh' + sh_extra_args, exec_input);
+  const exitCode = await exec(exec_shell, exec_input);
 
   if (exitCode != 0)
   {
