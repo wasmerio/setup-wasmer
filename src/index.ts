@@ -20,7 +20,6 @@ const main = async () =>
 {
   //Get if the host is Windows or not
   const version = getInput("version");
-  const sh_extra_args = version.length() == 0 ? "" : "-s " + version;
   const isWindows = process.platform == 'win32';
 
   //Create a temporary file to store the installer
@@ -51,12 +50,11 @@ const main = async () =>
   endGroup();
 
   info('Downloaded installer.');
+  const exec_input = version.length() == 0 ? [tmp] : [tmp, version];
 
   //Execute the installer
   startGroup('Execute the installer.');
-  const exitCode = await exec(isWindows ? 'pwsh' : 'sh' + sh_extra_args, [
-    tmp
-  ]);
+  const exitCode = await exec(isWindows ? 'pwsh' : 'sh' + sh_extra_args, exec_input);
 
   if (exitCode != 0)
   {
