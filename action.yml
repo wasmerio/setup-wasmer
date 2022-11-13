@@ -9,5 +9,5 @@ runs:
   main: dist/index.js
 
 inputs:
-  name:
+  version:
     default: ''
