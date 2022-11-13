@@ -4,7 +4,7 @@
 
 //Imports
 import got from 'got';
-import {addPath, debug, endGroup, exportVariable, info, setFailed, startGroup} from '@actions/core';
+import {getInput, addPath, debug, endGroup, exportVariable, info, setFailed, startGroup} from '@actions/core';
 import {createWriteStream} from 'fs';
 import {exec} from '@actions/exec';
 import {homedir} from 'os';
@@ -19,6 +19,7 @@ const pipeline = promisify(pipelineCB);
 const main = async () =>
 {
   //Get if the host is Windows or not
+  const version = getInput("version");
   const isWindows = process.platform == 'win32';
 
   //Create a temporary file to store the installer
@@ -49,12 +50,13 @@ const main = async () =>
   endGroup();
 
   info('Downloaded installer.');
+  const exec_input = version.length() == 0 ? [tmp] : [tmp, version];
+  const exec_shell = isWindows ? 'pwsh' : 'sh';
+  info(`${exec_shell} ${exec_input} -- install for version ${version}`);
 
   //Execute the installer
   startGroup('Execute the installer.');
-  const exitCode = await exec(isWindows ? 'pwsh' : 'sh', [
-    tmp
-  ]);
+  const exitCode = await exec(exec_shell, exec_input);
 
   if (exitCode != 0)
   {
