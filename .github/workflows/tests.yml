@@ -39,15 +39,13 @@ jobs:
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
-        uses: GuillaumeFalourd/assert-command-line-output@v2.1
-        with:
-          command_line: |
+        run: |
             wapm config set registry.url "https://registry.wapm.io"
             mkdir test-dir
             cd test-dir
             wapm install robert/echo
-            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
-          contains: ${{ env.ECHO_STRING }}
+            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+            grep "${{ env.ECHO_STRING }}" output.txt
 
   test-versions:
     name: Test version on ${{ matrix.os }}
@@ -86,12 +84,10 @@ jobs:
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
-        uses: GuillaumeFalourd/assert-command-line-output@v2.1
-        with:
-          command_line: |
+        run: |
             wapm config set registry.url "https://registry.wapm.io"
             mkdir test-dir
             cd test-dir
             wapm install robert/echo
-            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
-          contains: ${{ env.ECHO_STRING }}
+            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+            grep "${{ env.ECHO_STRING }}" output.txt
