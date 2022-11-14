@@ -11,40 +11,40 @@ env:
   ECHO_STRING: Hello from WASM!
 
 jobs:
-  # test:
-  #   name: Test on ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       os:
-  #         - macos-latest
-  #         - ubuntu-latest
-  #         - windows-latest
-  #   runs-on: ${{ matrix.os }}
-  #   steps:
-  #     # Checkout source code
-  #     - name: Checkout source code
-  #       uses: actions/checkout@v2
+  test:
+    name: Test on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v2
 
-  #     # Setup Wasmer
-  #     - name: Setup Wasmer
-  #       uses: ./
+      # Setup Wasmer
+      - name: Setup Wasmer
+        uses: ./
 
-  #     # Verify Wasmer is installed
-  #     - name: Verify Wasmer is installed
-  #       shell: pwsh
-  #       run: |
-  #         Get-Command wasmer
-  #         Get-Command wapm
-  #         Get-Command wax
+      # Verify Wasmer is installed
+      - name: Verify Wasmer is installed
+        shell: pwsh
+        run: |
+          Get-Command wasmer
+          Get-Command wapm
+          Get-Command wax
 
-  #     # Verify Wasmer runs
-  #     - name: Verify Wasmer runs
-  #       uses: MeilCli/test-command-action@v3.0.0
-  #       with:
-  #         command: wapm execute echo ${{ env.ECHO_STRING }}
-  #         expect_contain: ${{ env.ECHO_STRING }}
+      # Verify Wasmer runs
+      - name: Verify Wasmer runs
+        uses: MeilCli/test-command-action@v3.0.0
+        with:
+          command: wapm execute echo ${{ env.ECHO_STRING }}
+          expect_contain: ${{ env.ECHO_STRING }}
   test-versions:
-    name: Test version on ${{ matrix.os }}
+    name: Test on ${{ matrix.os }}
     strategy:
       matrix:
         os:
