@@ -43,6 +43,8 @@ jobs:
         with:
           command_line: |
             wapm config set registry.url "https://registry.wapm.io"
+            mkdir test-dir
+            cd test-dir
             wapm install robert/echo
             wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
           contains: ${{ env.ECHO_STRING }}
@@ -88,6 +90,8 @@ jobs:
         with:
           command_line: |
             wapm config set registry.url "https://registry.wapm.io"
+            mkdir test-dir
+            cd test-dir
             wapm install robert/echo
             wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
           contains: ${{ env.ECHO_STRING }}
