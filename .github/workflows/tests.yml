@@ -39,13 +39,14 @@ jobs:
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
-        uses: MeilCli/test-command-action@v3.0.0
+        uses: GuillaumeFalourd/assert-command-line-output@v2.1
         with:
-          command: |
+          command_line: |
             wapm config set registry.url "https://registry.wapm.io"
             wapm install robert/echo
             wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
-          expect_contain: ${{ env.ECHO_STRING }}
+          contains: ${{ env.ECHO_STRING }}
+
   test-versions:
     name: Test version on ${{ matrix.os }}
     strategy:
@@ -74,8 +75,8 @@ jobs:
           Get-Command wapm
           Get-Command wax
 
-      # Verify Wasmer runs
-      - name: Verify Wasmer runs
+      # Verify Wasmer version is correct
+      - name: Verify Wasmer version is correct
         uses: MeilCli/test-command-action@v3.0.0
         with:
           command: wasmer --version
@@ -83,10 +84,10 @@ jobs:
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
-        uses: MeilCli/test-command-action@v3.0.0
+        uses: GuillaumeFalourd/assert-command-line-output@v2.1
         with:
-          command: |
+          command_line: |
             wapm config set registry.url "https://registry.wapm.io"
             wapm install robert/echo
             wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm ${{ env.ECHO_STRING }}
-          expect_contain: ${{ env.ECHO_STRING }}
+          contains: ${{ env.ECHO_STRING }}
