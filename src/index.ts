@@ -50,7 +50,7 @@ const main = async () =>
   endGroup();
 
   info('Downloaded installer.');
-  const exec_input = version.length() == 0 ? [tmp] : [tmp, version];
+  const exec_input = version.length == 0 ? [tmp] : [tmp, version];
   const exec_shell = isWindows ? 'pwsh' : 'sh';
   info(`${exec_shell} ${exec_input} -- install for version ${version}`);
 
