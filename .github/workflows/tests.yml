@@ -39,7 +39,55 @@ jobs:
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
+        run: |
+            wapm config set registry.url "https://registry.wapm.io"
+            mkdir test-dir
+            cd test-dir
+            wapm install robert/echo
+            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+            grep "${{ env.ECHO_STRING }}" output.txt
+
+  test-versions:
+    name: Test version on ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Checkout source code
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      # Setup Wasmer
+      - name: Setup Wasmer
+        uses: ./
+        with:
+          version: "v3.0.0-rc.2"
+
+      # Verify Wasmer is installed
+      - name: Verify Wasmer is installed
+        shell: pwsh
+        run: |
+          Get-Command wasmer
+          Get-Command wapm
+          Get-Command wax
+
+      # Verify Wasmer version is correct
+      - name: Verify Wasmer version is correct
         uses: MeilCli/test-command-action@v3.0.0
         with:
-          command: wapm execute echo ${{ env.ECHO_STRING }}
-          expect_contain: ${{ env.ECHO_STRING }}
+          command: wasmer --version
+          expect_contain: "wasmer 3.0.0-rc.2"
+
+      # Verify Wasmer runs
+      - name: Verify Wasmer runs
+        run: |
+            wapm config set registry.url "https://registry.wapm.io"
+            mkdir test-dir
+            cd test-dir
+            wapm install robert/echo
+            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+            grep "${{ env.ECHO_STRING }}" output.txt
