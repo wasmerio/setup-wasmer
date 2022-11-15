@@ -25,7 +25,7 @@
 ```
 
 ## Input
-There is no input for this action
+version (optional) - specify the version of wasmer to install
 
 ## Output
 There is no output from this action
