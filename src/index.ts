@@ -111,7 +111,7 @@ const main = async () => {
     await pipeline(
       got
         .stream(
-          `https://github.com/wasmerio/wapm-cli/releases/download/${wapmVersion}/wapm-cli-windows-amd64.tar.gz`
+          `https://github.com/wasmerio/wapm-cli/releases/download/v0.5.9/wapm-cli-windows-amd64.tar.gz`
         )
         .on("downloadProgress", progressHandler),
       createWriteStream(tmpWapm, {
