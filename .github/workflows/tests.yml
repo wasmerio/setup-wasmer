@@ -40,12 +40,12 @@ jobs:
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wapm config set registry.url "https://registry.wapm.io"
-            mkdir test-dir
-            cd test-dir
-            wapm install robert/echo
-            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
-            grep "${{ env.ECHO_STRING }}" output.txt
+          wapm config set registry.url "https://registry.wapm.io"
+          mkdir test-dir
+          cd test-dir
+          wapm install robert/echo
+          wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+          grep "${{ env.ECHO_STRING }}" output.txt
 
   test-versions:
     name: Test version on ${{ matrix.os }}
@@ -66,6 +66,7 @@ jobs:
         uses: ./
         with:
           version: "v3.0.0-rc.2"
+          wapm_version: "v0.5.9"
 
       # Verify Wasmer is installed
       - name: Verify Wasmer is installed
@@ -85,9 +86,9 @@ jobs:
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wapm config set registry.url "https://registry.wapm.io"
-            mkdir test-dir
-            cd test-dir
-            wapm install robert/echo
-            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
-            grep "${{ env.ECHO_STRING }}" output.txt
+          wapm config set registry.url "https://registry.wapm.io"
+          mkdir test-dir
+          cd test-dir
+          wapm install robert/echo
+          wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+          grep "${{ env.ECHO_STRING }}" output.txt
