@@ -9,9 +9,6 @@
 * Automatically updates environment variables (So you can immediately start using Wasmer)
 * Fully tested
 
-## Caveats
-* Doesn't install Wasienv (Use the [Docker image instead](https://hub.docker.com/r/wasienv/wasienv))
-
 ## Usage
 ```yaml
 - name: Setup Wasmer
@@ -29,3 +26,6 @@ version (optional) - specify the version of wasmer to install
 
 ## Output
 There is no output from this action
+
+## Caveats
+* Doesn't install Wasienv (Use the [Docker image instead](https://hub.docker.com/r/wasienv/wasienv))
