@@ -12,7 +12,7 @@
 ## Usage
 ```yaml
 - name: Setup Wasmer
-  uses: wasmerio/setup-wasmer@v1
+  uses: wasmerio/setup-wasmer@v2
 
 - name: Publish to WAPM
   uses: wasmerio/wapm-publish@v1
