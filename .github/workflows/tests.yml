@@ -44,7 +44,7 @@ jobs:
             mkdir test-dir
             cd test-dir
             wapm install robert/echo
-            wasmer run -- ./wapm_packages/robert/echo\@0.1.5/echo.wasm "${{ env.ECHO_STRING }}" > output.txt
+            wasmer run -- './wapm_packages/robert/echo@0.1.5/echo.wasm' "${{ env.ECHO_STRING }}" > output.txt
             grep "${{ env.ECHO_STRING }}" output.txt
 
   test-versions:
