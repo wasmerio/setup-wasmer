@@ -77,7 +77,7 @@ jobs:
 
       # Verify Wasmer version is correct
       - name: Verify Wasmer version is correct
-        uses: MeilCli/test-command-action@v3.0.0
+        uses: MeilCli/test-command-action@v3.5.28
         with:
           command: wasmer --version
           expect_contain: "wasmer 3.0.0-rc.2"
