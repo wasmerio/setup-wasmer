@@ -46,6 +46,17 @@ const main = async () =>
     got.stream(url, {
       retry: {
         limit: 10,
+        errorCodes: [
+	  'ETIMEDOUT',
+	  'ECONNRESET',
+	  'EADDRINUSE',
+	  'ECONNREFUSED',
+	  'EPIPE',
+	  'ENOTFOUND',
+	  'ENETUNREACH',
+	  'EAI_AGAIN',
+          'ERR_NON_2XX_3XX_RESPONSE',
+	],
       }
     }).on('downloadProgress', progressHandler),
     createWriteStream(tmp, {
