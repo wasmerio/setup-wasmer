@@ -38,8 +38,7 @@ jobs:
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wasmer config set registry.url "https://registry.wasmer.io"
-            wasmer run robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
+            wasmer run https://wasmer.io/robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
             grep "${{ env.ECHO_STRING }}" output.txt
 
   test-versions:
@@ -78,6 +77,5 @@ jobs:
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wasmer config set registry.url "https://registry.wasmer.io"
-            wasmer run robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
+            wasmer run https://wasmer.io/robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
             grep "${{ env.ECHO_STRING }}" output.txt
