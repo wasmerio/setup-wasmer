@@ -34,17 +34,12 @@ jobs:
         shell: pwsh
         run: |
           Get-Command wasmer
-          Get-Command wapm
-          Get-Command wax
 
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wapm config set registry.url "https://registry.wapm.io"
-            mkdir test-dir
-            cd test-dir
-            wapm install robert/echo@0.1.5
-            wasmer run -- './wapm_packages/robert/echo@0.1.5/echo.wasm' "${{ env.ECHO_STRING }}" > output.txt
+            wasmer config set registry.url "https://registry.wasmer.io"
+            wasmer run robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
             grep "${{ env.ECHO_STRING }}" output.txt
 
   test-versions:
@@ -72,8 +67,6 @@ jobs:
         shell: pwsh
         run: |
           Get-Command wasmer
-          Get-Command wapm
-          Get-Command wax
 
       # Verify Wasmer version is correct
       - name: Verify Wasmer version is correct
@@ -85,9 +78,6 @@ jobs:
       # Verify Wasmer runs
       - name: Verify Wasmer runs
         run: |
-            wapm config set registry.url "https://registry.wapm.io"
-            mkdir test-dir
-            cd test-dir
-            wapm install robert/echo@0.1.5
-            wasmer run -- './wapm_packages/robert/echo@0.1.5/echo.wasm' "${{ env.ECHO_STRING }}" > output.txt
+            wasmer config set registry.url "https://registry.wasmer.io"
+            wasmer run robert/echo@0.1.5 -- "${{ env.ECHO_STRING }}" > output.txt
             grep "${{ env.ECHO_STRING }}" output.txt
