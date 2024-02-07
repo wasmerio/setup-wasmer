@@ -1,7 +1,7 @@
 # Setup Wasmer Action
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wasmerio/setup-wasmer/Tests?label=Tests&style=flat-square)](https://github.com/wasmerio/setup-wasmer/actions/workflows/tests.yml)
 
-[GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io). Works well with [wasmerio/wapm-publish](https://github.com/wasmerio/wapm-publish).
+[GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io).
 
 ## Features
 * Always uses the latest stable Wasmer build
