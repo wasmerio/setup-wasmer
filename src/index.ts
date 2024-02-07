@@ -39,30 +39,32 @@ const main = async () =>
     const percent = Math.round(data.percent * 100);
 
     //Log
-    info(`Downloaded ${transferred}K out of ${total}K (${percent}%)`);
+    if (!Number.isNaN(transferred) && !Number.isNaN(total) && !Number.isNaN(percent)) {
+      info(`Downloaded ${transferred}K out of ${total}K (${percent}%)`);
+    }
   };
   const url = isWindows ? 'https://win.wasmer.io' : 'https://get.wasmer.io';
-  await pipeline(
-    got.stream(url, {
-      retry: {
-        limit: 10,
-        errorCodes: [
-	  'ETIMEDOUT',
-	  'ECONNRESET',
-	  'EADDRINUSE',
-	  'ECONNREFUSED',
-	  'EPIPE',
-	  'ENOTFOUND',
-	  'ENETUNREACH',
-	  'EAI_AGAIN',
-          'ERR_NON_2XX_3XX_RESPONSE',
-	],
+  let retryAttempts = 0;
+  const maxRetryAttempts = 10;
+
+  while (retryAttempts < maxRetryAttempts) {
+    try {
+      await pipeline(
+        got.stream(url).on('downloadProgress', progressHandler),
+        createWriteStream(tmp, {
+          mode: 0o655
+        })
+      );
+      console.log('Downloaded installer.');
+      break;
+    }
+    catch (error) {
+      retryAttempts++;
+      if (retryAttempts >= maxRetryAttempts) {
+        throw new Error(`Failed to download installer after ${retryAttempts} attempts.\nLast error: ${error}`);
       }
-    }).on('downloadProgress', progressHandler),
-    createWriteStream(tmp, {
-      mode: 0o655
-    })
-  );
+    }
+  }
   endGroup();
 
   info('Downloaded installer.');
