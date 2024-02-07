@@ -41,8 +41,13 @@ const main = async () =>
     //Log
     info(`Downloaded ${transferred}K out of ${total}K (${percent}%)`);
   };
+  const url = isWindows ? 'https://win.wasmer.io' : 'https://get.wasmer.io';
   await pipeline(
-    got.stream(isWindows ? 'https://win.wasmer.io' : 'https://get.wasmer.io').on('downloadProgress', progressHandler),
+    got.stream(url, {
+      retry: {
+        limit: 10,
+      }
+    }).on('downloadProgress', progressHandler),
     createWriteStream(tmp, {
       mode: 0o655
     })
