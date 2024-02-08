@@ -60,6 +60,10 @@ const main = async () =>
     }
     catch (error) {
       retryAttempts++;
+      // exponential backoff with jitter
+      const backoff = Math.pow(2, retryAttempts) + Math.random();
+      console.log(`Failed to download installer. Retrying in ${backoff} seconds.`);
+      await new Promise(resolve => setTimeout(resolve, backoff * 1000));
       if (retryAttempts >= maxRetryAttempts) {
         throw new Error(`Failed to download installer after ${retryAttempts} attempts.\nLast error: ${error}`);
       }
