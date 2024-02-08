@@ -1,10 +1,12 @@
-# Setup Wasmer Action
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wasmerio/setup-wasmer/Tests?label=Tests&style=flat-square)](https://github.com/wasmerio/setup-wasmer/actions/workflows/tests.yml)
+# setup-wasmer
+[![Tests](https://github.com/wasmerio/setup-wasmer/actions/workflows/tests.yml/badge.svg)](https://github.com/wasmerio/setup-wasmer/actions/workflows/tests.yml)
+
 
 [GitHub action](https://github.com/features/actions) for setting up [Wasmer](https://wasmer.io).
 
 ## Features
 * Always uses the latest stable Wasmer build
+* Optionally lock onto a specific wasmer version 
 * Cross platform (Linux, Mac, and Windows)
 * Automatically updates environment variables (So you can immediately start using Wasmer)
 * Fully tested
@@ -13,9 +15,9 @@
 ```yaml
 - name: Setup Wasmer
   uses: wasmerio/setup-wasmer@v3.1
-  with:
-    version: '4.2.5'
 ```
+
+
 
 ## Input
 version (optional) - specify the version of wasmer to install
