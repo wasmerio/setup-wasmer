@@ -12,13 +12,9 @@
 ## Usage
 ```yaml
 - name: Setup Wasmer
-  uses: wasmerio/setup-wasmer@v2
-
-- name: Publish to WAPM
-  uses: wasmerio/wapm-publish@v1
+  uses: wasmerio/setup-wasmer@v3.1
   with:
-    username: ${{ secrets.WAPM_USERNAME }}
-    password: ${{ secrets.WAPM_PASSWORD }}
+    version: '4.2.5'
 ```
 
 ## Input
